@@ -4,10 +4,29 @@ using System.Text;
 
 namespace CRPGVanOrnam
 {
-    public class Player
+    public class Player:LivingCreature
     {
-        public string Name { set; get; }
-        public Location CurrentLocation { set; get; }
+        public string Name;
+        public int Gold;
+        public int ExperiencePoints;
+        public int Level;
+        public Location CurrentLocation;
+        public List<InventoryItem> Inventory;
+        public List<PlayerQuest> Quests;
+
+        public Player(string name, int currentHitPoints,
+            int maximumHitPoints, int gold, int experiencePoints,
+            int level): base(currentHitPoints, maximumHitPoints)
+        {
+            Name = name;
+            Gold = gold;
+            ExperiencePoints = experiencePoints;
+            Level = level;
+            Inventory = new List<InventoryItem>();
+            Quests = new List<PlayerQuest>();
+        }
+
+        public Player() { }
 
         public void MoveTo(Location loc)
         {
@@ -19,6 +38,7 @@ namespace CRPGVanOrnam
             if (CurrentLocation.LocationToNorth != null)
             {
                 MoveTo(CurrentLocation.LocationToNorth);
+                Program.DisplayCurrentLocation();
             }
             else
             {
@@ -31,6 +51,7 @@ namespace CRPGVanOrnam
             if (CurrentLocation.LocationToSouth != null)
             {
                 MoveTo(CurrentLocation.LocationToSouth);
+                Program.DisplayCurrentLocation();
             }
             else
             {
@@ -43,6 +64,7 @@ namespace CRPGVanOrnam
             if (CurrentLocation.LocationToEast != null)
             {
                 MoveTo(CurrentLocation.LocationToEast);
+                Program.DisplayCurrentLocation();
             }
             else
             {
@@ -55,6 +77,7 @@ namespace CRPGVanOrnam
             if (CurrentLocation.LocationToWest != null)
             {
                 MoveTo(CurrentLocation.LocationToWest);
+                Program.DisplayCurrentLocation();
             }
             else
             {

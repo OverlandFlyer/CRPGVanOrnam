@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CRPGVanOrnam
 {
-    class Item
+    public class Item
     {
         public int ID;
         public string Name;
@@ -16,5 +16,6 @@ namespace CRPGVanOrnam
             Name = name;
             NamePlural = namePlural;
         }
+        public Item() { }
     }
 }
