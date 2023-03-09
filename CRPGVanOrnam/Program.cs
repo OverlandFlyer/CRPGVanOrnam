@@ -18,7 +18,9 @@ namespace CRPGVanOrnam
             InventoryItem sword = new InventoryItem(World.ItemByID(World.ITEM_ID_RUSTY_SWORD), 1);
             InventoryItem club = new InventoryItem(World.ItemByID(World.ITEM_ID_CLUB), 1);
             _player.Inventory.Add(sword);
-            _player.Inventory.Add(club);
+            //_player.Inventory.Add(club);
+            InventoryItem aPass = new InventoryItem(World.ItemByID(World.ITEM_ID_ADVENTURER_PASS), 1);
+            //_player.Inventory.Add(aPass);
 
             while (true)
             {
@@ -83,11 +85,27 @@ namespace CRPGVanOrnam
             }
             else if (input == "stats")
             {
-                Console.WriteLine("\n Current HP: \t{0}", _player.CurrentHitPoints);
-                Console.WriteLine("Maximum HP: \t{0}", _player.MaximumHitPoints);
-                Console.WriteLine("XP:\t {0}", _player.ExperiencePoints);
-                Console.WriteLine("Level: \t{0}", _player.Level);
-                Console.WriteLine("Gold:\t{0}", _player.Gold);
+                Console.WriteLine("\nStats for {0}", _player.Name);
+                Console.WriteLine("\tCurrent HP: \t{0}", _player.CurrentHitPoints);
+                Console.WriteLine("\tMaximum HP: \t{0}", _player.MaximumHitPoints);
+                Console.WriteLine("\tXP:\t\t{0}", _player.ExperiencePoints);
+                Console.WriteLine("\tLevel:\t\t{0}", _player.Level);
+                Console.WriteLine("\tGold:\t\t{0}", _player.Gold);
+            }
+            else if (input == "quests")
+            {
+                if(_player.Quests.Count == 0)
+                {
+                    Console.WriteLine("You do not have any quests.");
+                }
+                else
+                {
+                    foreach(PlayerQuest playerQuest in _player.Quests)
+                    {
+                        Console.WriteLine("{0}: {1}", playerQuest.Details.Name,
+                            playerQuest.IsCompleted ? "Completed" : "incomplete");
+                    }
+                }
             }
             else
             {

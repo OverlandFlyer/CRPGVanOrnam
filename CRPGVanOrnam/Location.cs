@@ -25,6 +25,7 @@ namespace CRPGVanOrnam
             ID = iD;
             Name = name;
             Description = description;
+            ItemRequiredToEnter = itemRequiredToEnter;
         }
 
         
